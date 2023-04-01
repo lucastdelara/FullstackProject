@@ -1,8 +1,8 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import Register from "";
-import Login from "";
+import Register from "../pages/Registerpage";
+import Login from "../pages/Loginpage";
 import Home from "../pages/Homepage";
-import ProtectedRoutes from "";
+import ProtectedRoutes from "../components/ProtectedRoutes";
 
 const RoutesMain = () => (
     <Routes>

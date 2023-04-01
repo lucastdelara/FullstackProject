@@ -6,6 +6,7 @@ import ContactsList from "../../components/ContactsList";
 import Modal from "../../components/Modal";
 
 import { StyledHomepage } from "./styles";
+import { StyledAddOrRemoveButton, StyledBackButton } from "../../components/Button/styles";
 
 const Home = () => {
     const { user, token,invisibleModal, setInvisibleModal } = useContext(UserContext);
@@ -21,7 +22,9 @@ const Home = () => {
             <Outlet />
             <nav className="home-nav">
                 <h1>FullStack Project</h1>
-                <p>button</p>
+                <StyledBackButton onClick={() => logout()} type="button">
+                    Sair
+                </StyledBackButton>
             </nav>
             <div className="home-header">
                 <h2>Olá, {user?.name} !</h2>
@@ -29,13 +32,21 @@ const Home = () => {
             <div className="home-content">
                 <div className="content-header">
                     <h2>Contacts</h2>
-                    <p>button</p>
+                    <StyledAddOrRemoveButton
+                        onClick={() => setInvisibleModal(true)}
+                        type="button"
+                    >
+                        +
+                    </StyledAddOrRemoveButton>
                 </div>
                 <div className="home-ul-container">
                 {invisibleModal && <Modal />}
+                <ContactsList />
                 </div>
             </div>
         </StyledHomepage>
+    ) : (
+        <Navigate to="/login" replace />
     );
 };
 
