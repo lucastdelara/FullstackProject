@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { UserProvider } from ;
-import { ContactsProvider } from ;
+import { UserProvider } from './contexts/UserContext';
+import { ContactsProvider } from "./contexts/ContactsContext";
 import { BrowserRouter } from "react-router-dom";
 import App from './App';
 

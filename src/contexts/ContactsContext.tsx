@@ -24,13 +24,14 @@ export interface iIdContact {
 
 export interface iContactContext {
     createContact: (data: iContact) => Promise<void>;
+    deleteContact: (data: iIdContact) => Promise<void>;
     contacts: iContact[];
     setContacts: Dispatch<React.SetStateAction<iContact[]>>;
 }
 
 export const ContactsContext = createContext({} as iContactContext);
 
-export const ContactProvider = ({ children }: iContactsProviderProps) => {
+export const ContactsProvider = ({ children }: iContactsProviderProps) => {
     const [contacts, setContacts] = useState([] as iContact[]);
 
     async function createContact(data: iContactFormData) {
@@ -45,10 +46,24 @@ export const ContactProvider = ({ children }: iContactsProviderProps) => {
         }
     }
 
+    async function deleteContact(idContact:iIdContact) {
+        try {
+            const newList = contacts.filter((element) => element.id !== idTech.id);
+            const token = localStorage.getItem("FPToken");
+      
+            api.defaults.headers.authorization = `Bearer ${token}`;
+            await api.delete(`/users/contacts/${idContact.id}`);
+            setContacts(newList);
+          } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <ContactsContext.Provider
             value={{
                 createContact,
+                deleteContact,
                 contacts,
                 setContacts,
             }}
