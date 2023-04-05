@@ -1,3 +1,5 @@
+import { ContactsProvider } from "./contexts/ContactsContext";
+import { UserProvider } from "./contexts/UserContext";
 import Routes from "./routes";
 import GlobalStyles from "./styles/global";
 
@@ -5,7 +7,11 @@ function App() {
   return (
     <>
       <GlobalStyles />
-      <Routes />
+      <ContactsProvider>
+        <UserProvider>
+          <Routes />
+        </UserProvider>
+      </ContactsProvider>
     </>
   );
 }

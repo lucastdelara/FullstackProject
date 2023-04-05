@@ -26,36 +26,36 @@ const Login = () => {
   return (
     <StyledLogin className="login-container">
       <div className="login-header">
-        <h1>KenzieHub</h1>
+        <h1>Full Stack Project</h1>
       </div>
       <form className="login-form" onSubmit={handleSubmit(loginUser)}>
         <h2 className="card-title">Login</h2>
 
         <div className="login-label">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email">E-mail</label>
           <input
             id="email"
             type="email"
-            placeholder="Digite aqui seu e-mail"
+            placeholder="Enter you e-mail"
             {...register("email")}
           />
           {errors.email?.message}
 
-          <label htmlFor="password">Senha</label>
+          <label htmlFor="password">Password</label>
           <input
             id="password"
             type="password"
-            placeholder="Digite aqui sua senha"
+            placeholder="Enter your password"
             {...register("password")}
           />
           {errors.password?.message}
         </div>
 
         <div className="login-buttons">
-        <StyledPrimaryButton type="submit">Entrar</StyledPrimaryButton>
-          <p>Ainda não possui uma conta?</p>
+        <StyledPrimaryButton type="submit">Login</StyledPrimaryButton>
+          <p>Create a new account</p>
 
-          <LinkRegister to="/register">Cadastre-se</LinkRegister>
+          <LinkRegister to="/register">Register</LinkRegister>
         </div>
       </form>
     </StyledLogin>
