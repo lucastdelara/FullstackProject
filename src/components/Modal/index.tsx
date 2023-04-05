@@ -1,4 +1,4 @@
-import { yupResolver } from "@hookform/resolver/yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useContext } from "react"
 import { useForm } from "react-hook-form";
@@ -39,22 +39,23 @@ const Modal = () => {
         </div>
         <div className="modal-body">
           <form onSubmit={handleSubmit(createContact)}>
-            <label htmlFor="title"> Nome </label>
+            <label htmlFor="name"> Name </label>
             <input
-              id="title"
+              id="name"
               type="text"
               placeholder="Typescript"
-              {...register("title")}
+              {...register("name")}
             />
-            <p>{errors.title?.message}</p>
+            <p>{errors.name?.message}</p>
 
-            <label htmlFor="status"> Selecionar status </label>
-            <select defaultValue="Iniciante" {...register("status")}>
-              <option value="Iniciante">Iniciante</option>
-              <option value="Intermediário">Intermediário</option>
-              <option value="Avançado">Avançado</option>
-            </select>
-            <p>{errors.status?.message}</p>
+            <label htmlFor="contact"> Contact </label>
+            <input
+              id="contact"
+              type="text"
+              placeholder="Typescript"
+              {...register("contact")}
+            />
+            <p>{errors.name?.message}</p>
 
             <StyledPrimaryButton type="submit">
               Register Contact

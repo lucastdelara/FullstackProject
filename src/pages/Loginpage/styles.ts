@@ -86,6 +86,6 @@ export const LinkRegister = styled(Link)`
   justify-content: center;
 
   &:hover {
-    background-color: var(--grey-2);
+    background-color: var(--primary-negative);
   }
 `;
