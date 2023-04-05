@@ -46,63 +46,63 @@ const Register = () => {
       <StyledRegister className="register-container">
         <nav className="register-nav">
           <h1>Fullstack Project</h1>
-          <LinkLogin to="/login"> Voltar </LinkLogin>
+          <LinkLogin to="/login"> Back </LinkLogin>
         </nav>
 
         <form className="register-form" onSubmit={handleSubmit(registerUser)}>
           <div className="register-header">
-            <h2>Crie sua conta</h2>
+            <h2>Register</h2>
           </div>
 
           <div className="register-label">
-            <label htmlFor="name">Nome</label>
+            <label htmlFor="name">Name</label>
             <input
               id="name"
               type="text"
-              placeholder="Digite aqui seu nome"
+              placeholder="Name"
               {...register("name")}
             />
             {errors.name?.message}
 
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">E-mail</label>
             <input
               id="email"
               type="email"
-              placeholder="Digite aqui seu email"
+              placeholder="E-mail"
               {...register("email")}
             />
             {errors.email?.message}
 
-            <label htmlFor="password">Senha</label>
+            <label htmlFor="password">Password</label>
             <input
               id="password"
               type="password"
-              placeholder="Digite aqui sua senha"
-              {...register("confirmPassword")}
-            />
-            {errors.confirmPassword?.message}
-
-            <label htmlFor="confirm-password">Confirmar senha</label>
-            <input
-              id="confirm-password"
-              type="password"
-              placeholder="Digite novamente sua senha"
+              placeholder="Password"
               {...register("password")}
             />
             {errors.password?.message}
 
-            <label htmlFor="contact">Contato</label>
+            <label htmlFor="confirm-password">Confirm password</label>
+            <input
+              id="confirm-password"
+              type="password"
+              placeholder="Confirm password"
+              {...register("confirmPassword")}
+            />
+            {errors.confirmPassword?.message}
+
+            <label htmlFor="contact">Contact</label>
             <input
               id="contact"
               type="text"
-              placeholder="Opção de contato"
+              placeholder="Contact"
               {...register("contact")}
             />
             {errors.contact?.message}
           </div>
 
           <div className="register-buttons">
-            <StyledPrimaryButton type="submit">Cadastrar</StyledPrimaryButton>
+            <StyledPrimaryButton type="submit">Register</StyledPrimaryButton>
           </div>
         </form>
       </StyledRegister>

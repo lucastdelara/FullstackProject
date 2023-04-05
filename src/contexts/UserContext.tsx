@@ -3,26 +3,25 @@ import { useContext } from "react";
 import { createContext, Dispatch, ReactNode, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { iContact, ContactsContext } from "./ContactsContext";
+import { ContactsContext } from "./ContactsContext";
 
-// import api from "../services/api";
+import api from "../services/api";
 
 export interface iUserProviderProps {
     children: ReactNode;
 }
 
-// export interface iApiError {
-//     status?: string;
-//     message?: string | [];
-// }
+export interface iApiError {
+    status?: string;
+    message?: string | [];
+}
 
 export interface iRegisterFormData {
+    name: string;
     email: string;
     password: string;
     confirmPassword: string;
-    name: string;
     contact: string;
-    register_date: string;
 }
 
 export interface iLoginFormData {
@@ -89,20 +88,11 @@ export const UserProvider = ({ children }: iUserProviderProps) => {
           loadUser();
     }, [setContacts]);
 
-    async function registerUser(data: iRegisterFormData) {
+    async function registerUser(data: iRegisterFormData):Promise<void> {
         try {
-          const response = await api.post("/users", data);
-          console.log(response);
-    
-          const { user: userResponse, token } = response.data;
-    
-          api.defaults.headers.authorization = `Bearer ${token}`;
-    
-          setUser(userResponse);
-    
-          localStorage.setItem("FPToken", token);
-    
-          navigate("/home", { replace: true });
+          const response = await api.post<iUser>("/users/", data);
+          console.log("oi",response);
+          navigate("/login", { replace: true });
         } catch (error) {
           console.log(error);
         }
