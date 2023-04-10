@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { UserContext, iLoginFormData } from "../../contexts/UserContext";
+import { UserContext } from "../../contexts/users/UserContext";
+import { iLoginFormData } from "../../contexts/users/types";
 import * as yup from "yup";
 
 import { StyledLogin, LinkRegister } from "./styles";

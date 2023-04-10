@@ -1,5 +1,5 @@
-import { ContactsProvider } from "./contexts/ContactsContext";
-import { UserProvider } from "./contexts/UserContext";
+import { ContactsProvider } from "./contexts/contacts/ContactsContext";
+import { UserProvider } from "./contexts/users/UserContext";
 import Routes from "./routes";
 import GlobalStyles from "./styles/global";
 

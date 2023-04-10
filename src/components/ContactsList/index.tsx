@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ContactsContext } from "../../contexts/ContactsContext";
+import { ContactsContext } from "../../contexts/contacts/ContactsContext";
 import { StyledAddOrRemoveButton } from "../Button/styles";
 
 import { StyledUl, StyledLi } from "./styles";
