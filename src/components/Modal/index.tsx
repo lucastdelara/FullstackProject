@@ -2,8 +2,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useContext } from "react"
 import { useForm } from "react-hook-form";
-import { UserContext } from "../../contexts/UserContext"
-import { iContact, ContactsContext } from "../../contexts/ContactsContext";
+import { UserContext } from "../../contexts/users/UserContext"
+import { ContactsContext } from "../../contexts/contacts/ContactsContext";
+import { iContact } from "../../contexts/contacts/types";
 
 import { StyledModal } from "./styles";
 import { StyledAddOrRemoveButton, StyledPrimaryButton } from "../Button/styles";

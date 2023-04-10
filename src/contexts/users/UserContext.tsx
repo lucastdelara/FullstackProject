@@ -1,56 +1,10 @@
 import { AxiosError } from "axios";
-import { useContext } from "react";
-import { createContext, Dispatch, ReactNode, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { ContactsContext } from "./ContactsContext";
-
-import api from "../services/api";
-
-export interface iUserProviderProps {
-    children: ReactNode;
-}
-
-export interface iApiError {
-    status?: string;
-    message?: string | [];
-}
-
-export interface iRegisterFormData {
-    name: string;
-    email: string;
-    password: string;
-    confirmPassword: string;
-    contact: string;
-}
-
-export interface iLoginFormData {
-    email: string;
-    password: string;
-}
-
-export interface iUser {
-    id: string;
-    name: string;
-    email: string;
-    contact: string;
-    register_date: string;
-}
-
-export interface iModal {
-    title: string;
-    status: string;
-}
-
-export interface iUserContext {
-    registerUser: (data: iRegisterFormData) => Promise<void>;
-    token: string | null;
-    user: iUser | null;
-    loginUser: (data: iLoginFormData) => Promise<void>;
-    loading: boolean;
-    invisibleModal: boolean;
-    setInvisibleModal: Dispatch<React.SetStateAction<boolean>>;
-}
+import api from "../../services/api";
+import { iApiError, iLoginFormData, iRegisterFormData, iUser, iUserContext, iUserProviderProps } from "./types";
+import { ContactsContext } from "../contacts/ContactsContext";
 
 export const UserContext = createContext({} as iUserContext);
 
@@ -76,7 +30,7 @@ export const UserProvider = ({ children }: iUserProviderProps) => {
                 api.defaults.headers.authorization = `Bearer ${token}`;
                 const { data } = await api.get("/profile");
                 setUser(data);
-                setContacts(data.techs);
+                setContacts(data.contacts);
               } catch (error) {
                 const requestError = error as AxiosError<iApiError>;
                 console.log(requestError);
@@ -98,16 +52,17 @@ export const UserProvider = ({ children }: iUserProviderProps) => {
         }
       }
     
-      async function loginUser(data: iLoginFormData) {
+      async function loginUser(data: iLoginFormData):Promise<void> {
         try {
-          const response = await api.post("/sessions", data);
+          const response = await api.post("/login", data);
     
           setUser(response.data.user);
-    
-          localStorage.setItem("FPToken", response.data.token);
-          localStorage.setItem("authUserId", response.data.user.id);
+          console.log("response", response)
+          localStorage.setItem("FPToken", response.data.tokenUser);
+          // localStorage.setItem("authUserId", response.data.user.id);
           navigate("/home", { replace: true });
         } catch (error) {
+          console.log("testedologin")
           console.error(error);
         }
       }

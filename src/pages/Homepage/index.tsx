@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useNavigate, Navigate, Outlet } from "react-router-dom";
-import { UserContext } from "../../contexts/UserContext";
+import { UserContext } from "../../contexts/users/UserContext";
 
 import ContactsList from "../../components/ContactsList";
 import Modal from "../../components/Modal";
