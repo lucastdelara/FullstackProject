@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 export const StyledPrimaryButton = styled.button`
-  background-color: var(--grey-0);
+  background-color: var(--grey-1);
   color: var(--grey-0);
   border: none;
   height: 45px;
@@ -32,7 +32,7 @@ export const StyledBackButton = styled.button`
   font-size: 10px;
 
   &:hover {
-    background-color: var(--grey-1);
+    background-color: var(--primary-negative);
   }
 `;
 

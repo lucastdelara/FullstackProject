@@ -1,33 +1,7 @@
-import { createContext, Dispatch, ReactNode, useState } from "react";
-// import api
-
-export interface iContactsProviderProps {
-    children: ReactNode;
-}
-
-export interface iContactFormData {
-    name: string;
-    contact: string;
-    register_date: string;
-}
-
-export interface iContact {
-    id: string;
-    name: string;
-    contact: string;
-    register_date: string;
-}
-
-export interface iIdContact {
-    id: string;
-}
-
-export interface iContactContext {
-    createContact: (data: iContact) => Promise<void>;
-    deleteContact: (data: iIdContact) => Promise<void>;
-    contacts: iContact[];
-    setContacts: Dispatch<React.SetStateAction<iContact[]>>;
-}
+import { createContext } from "react";
+import { iContact, iContactContext, iContactFormData, iContactsProviderProps, iIdContact } from "./types";
+import { useState } from "react";
+import api from "../../services/api";
 
 export const ContactsContext = createContext({} as iContactContext);
 
@@ -38,9 +12,9 @@ export const ContactsProvider = ({ children }: iContactsProviderProps) => {
         try {
             const token = localStorage.getItem("FPToken");
 
-            // api.defaults.headers.authorization = `Bearer ${token}`;
-            // const apiResponse = await api.post("/users/contacts", data);
-            // setContacts([...contacts, apiResponse.data]);
+            api.defaults.headers.authorization = `Bearer ${token}`;
+            const apiResponse = await api.post("/contacts", data);
+            setContacts([...contacts, apiResponse.data]);
         } catch (error) {
             console.error(error);
         }
@@ -48,11 +22,11 @@ export const ContactsProvider = ({ children }: iContactsProviderProps) => {
 
     async function deleteContact(idContact:iIdContact) {
         try {
-            const newList = contacts.filter((element) => element.id !== idTech.id);
+            const newList = contacts.filter((element) => element.id !== idContact.id);
             const token = localStorage.getItem("FPToken");
       
             api.defaults.headers.authorization = `Bearer ${token}`;
-            await api.delete(`/users/contacts/${idContact.id}`);
+            await api.delete(`/contacts/${idContact.id}`);
             setContacts(newList);
           } catch (error) {
             console.log(error);

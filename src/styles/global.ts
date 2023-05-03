@@ -34,7 +34,7 @@ time, mark, audio, video {
 
 body {
     background-color: var(--grey-4);
-    font-family: "Inter", sans-serif;
+    font-family: "Open Sans", sans-serif;
 	line-height: 1;
     height: 100vh;
     width: 100%;
@@ -56,7 +56,7 @@ table {
 }
 
 h1, h2, h3, h4, h5, h6, p, li, a, button, label {
-    font-family: "Inter";
+    font-family: "Open Sans";
     color: var(--grey-0);
 }
 
@@ -65,9 +65,9 @@ h1, h2, h3, h4, h5, h6, p, li, a, button, label {
 }
 
 :root {
-    --primary: #FF577F;
-    --primary-focus: #FF427F;
-    --primary-negative: #59323F;
+    --primary: #CE712D;
+    --primary-focus: #233245;
+    --primary-negative: #99993a;
 
     --grey-4: #121214;
     --grey-3: #212529;
