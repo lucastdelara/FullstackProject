@@ -13,6 +13,7 @@ export interface iContactFormData {
 export interface iContact {
     id: string;
     name: string;
+    email: string;
     contact: string;
     register_date: string;
 }

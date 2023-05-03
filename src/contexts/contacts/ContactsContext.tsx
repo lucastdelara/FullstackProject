@@ -13,7 +13,7 @@ export const ContactsProvider = ({ children }: iContactsProviderProps) => {
             const token = localStorage.getItem("FPToken");
 
             api.defaults.headers.authorization = `Bearer ${token}`;
-            const apiResponse = await api.post("/users/contacts", data);
+            const apiResponse = await api.post("/contacts", data);
             setContacts([...contacts, apiResponse.data]);
         } catch (error) {
             console.error(error);
@@ -26,7 +26,7 @@ export const ContactsProvider = ({ children }: iContactsProviderProps) => {
             const token = localStorage.getItem("FPToken");
       
             api.defaults.headers.authorization = `Bearer ${token}`;
-            await api.delete(`/users/contacts/${idContact.id}`);
+            await api.delete(`/contacts/${idContact.id}`);
             setContacts(newList);
           } catch (error) {
             console.log(error);

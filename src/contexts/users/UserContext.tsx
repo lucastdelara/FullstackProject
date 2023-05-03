@@ -12,23 +12,21 @@ export const UserProvider = ({ children }: iUserProviderProps) => {
     const [user, setUser] = useState<iUser | null>(null);
     const [loading, setLoading] = useState(false);
     const [invisibleModal, setInvisibleModal] = useState(false);
-    const [token, setToken] = useState(
-      localStorage.getItem("FPToken") || null
-    );
 
     const { setContacts } = useContext(ContactsContext);
 
     const navigate = useNavigate();
 
     useEffect(() => {
+      const token = localStorage.getItem("FPToken");
+      const id = localStorage.getItem("authUserId");
         async function loadUser() {
-            const token = localStorage.getItem("FPToken");
-            setToken(token);
+
       
             if (token) {
               try {
                 api.defaults.headers.authorization = `Bearer ${token}`;
-                const { data } = await api.get("/profile");
+                const { data } = await api.get(`/user/${id}`);
                 setUser(data);
                 setContacts(data.contacts);
               } catch (error) {
@@ -40,12 +38,11 @@ export const UserProvider = ({ children }: iUserProviderProps) => {
           }
 
           loadUser();
-    }, [setContacts]);
+    }, []);
 
     async function registerUser(data: iRegisterFormData):Promise<void> {
         try {
-          const response = await api.post<iUser>("/users/", data);
-          console.log("oi",response);
+          const response = await api.post<iUser>("/users", data);
           navigate("/login", { replace: true });
         } catch (error) {
           console.log(error);
@@ -57,12 +54,9 @@ export const UserProvider = ({ children }: iUserProviderProps) => {
           const response = await api.post("/login", data);
     
           setUser(response.data.user);
-          console.log("response", response)
-          localStorage.setItem("FPToken", response.data.tokenUser);
-          // localStorage.setItem("authUserId", response.data.user.id);
+          localStorage.setItem("FPToken", response.data.token);
           navigate("/home", { replace: true });
         } catch (error) {
-          console.log("testedologin")
           console.error(error);
         }
       }
@@ -71,7 +65,6 @@ export const UserProvider = ({ children }: iUserProviderProps) => {
         <UserContext.Provider
           value={{
             user,
-            token,
             loginUser,
             registerUser,
             loading,

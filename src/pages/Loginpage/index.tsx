@@ -12,8 +12,8 @@ const Login = () => {
   const { loginUser } = useContext(UserContext);
 
   const formSchema = yup.object().shape({
-    email: yup.string().required("Campo obrigatório"),
-    password: yup.string().required("Campo obrigatório"),
+    email: yup.string().required("Required field"),
+    password: yup.string().required("Required field"),
   });
 
   const {
