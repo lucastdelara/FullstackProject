@@ -37,7 +37,6 @@ export interface iModal {
 
 export interface iUserContext {
     registerUser: (data: iRegisterFormData) => Promise<void>;
-    token: string | null;
     user: iUser | null;
     loginUser: (data: iLoginFormData) => Promise<void>;
     loading: boolean;

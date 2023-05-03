@@ -15,6 +15,7 @@ const Modal = () => {
 
   const contactFormSchema = yup.object().shape({
       name: yup.string().required("Required fiel"),
+      email: yup.string().required("Required field"),
       contact: yup.string().required("Required field"),
   });
 
@@ -44,19 +45,28 @@ const Modal = () => {
             <input
               id="name"
               type="text"
-              placeholder="Typescript"
+              placeholder="Mr Name Name"
               {...register("name")}
             />
             <p>{errors.name?.message}</p>
+
+            <label htmlFor="email"> Email </label>
+            <input
+              id="email"
+              type="text"
+              placeholder="example@mail.com"
+              {...register("email")}
+            />
+            <p>{errors.email?.message}</p>
 
             <label htmlFor="contact"> Contact </label>
             <input
               id="contact"
               type="text"
-              placeholder="Typescript"
+              placeholder="(000) 0 0000-0000"
               {...register("contact")}
             />
-            <p>{errors.name?.message}</p>
+            <p>{errors.contact?.message}</p>
 
             <StyledPrimaryButton type="submit">
               Register Contact
